@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MERPresentation'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'MERPresentation.'
   s.description      = '一行代码完成转场动画的简单案例 MERPresentation'
 
