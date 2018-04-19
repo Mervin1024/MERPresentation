@@ -12,27 +12,27 @@
 #import "MERDiffusePresentationManager.h"
 #import <objc/runtime.h>
 
-static char const MER_PresentationManagerKey;
-static char const MER_PresentationViewSizeKey;
+static char MER_PresentationManagerKey;
+static char MER_PresentationViewSizeKey;
 
 @implementation UIViewController (MERPresentation)
 
 - (void)setMer_PresentationManager:(MERPresentationManager *)presentationManager {
-    objc_setAssociatedObject(self, MER_PresentationManagerKey, presentationManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &MER_PresentationManagerKey, presentationManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (MERPresentationManager *)mer_presentationManager {
-    MERPresentationManager *manager = objc_getAssociatedObject(self, MER_PresentationManagerKey);
+    MERPresentationManager *manager = objc_getAssociatedObject(self, &MER_PresentationManagerKey);
     return manager;
 }
 
 - (void)setMer_viewSize:(CGSize)viewSize {
     NSValue *value = [NSValue valueWithCGSize:viewSize];
-    objc_setAssociatedObject(self, MER_PresentationViewSizeKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &MER_PresentationViewSizeKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGSize)mer_viewSize {
-    NSValue *value = objc_getAssociatedObject(self, MER_PresentationViewSizeKey);
+    NSValue *value = objc_getAssociatedObject(self, &MER_PresentationViewSizeKey);
     if (!value) {
         return [UIScreen mainScreen].bounds.size;
     }
