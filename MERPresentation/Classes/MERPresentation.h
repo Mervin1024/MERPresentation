@@ -8,5 +8,6 @@
 #ifndef MERPresentation_h
 #define MERPresentation_h
 
+#import "UIViewController+MERPresentation.h"
 
 #endif /* MERPresentation_h */
