@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.source_files = 'MERPresentation/Classes/**/*'
   
 
-  s.public_header_files = 'Pod/Classes/MERPresentation.h'
+  s.public_header_files = 'MERPresentation/Classes/MERPresentation.h'
 end
