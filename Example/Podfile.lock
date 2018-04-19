@@ -1,0 +1,16 @@
+PODS:
+  - MERPresentation (0.1.0)
+
+DEPENDENCIES:
+  - MERPresentation (from `../`)
+
+EXTERNAL SOURCES:
+  MERPresentation:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MERPresentation: 86f24cfbbe53ae045e4495fbe62757c17ee0a7dd
+
+PODFILE CHECKSUM: a78dac2bdb8655eb2e3bb9b5ab8ab529447f75ad
+
+COCOAPODS: 1.3.1

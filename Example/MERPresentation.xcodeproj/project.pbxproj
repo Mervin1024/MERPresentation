@@ -23,6 +23,8 @@
 		628F844F2CF73A6BCBCAD630 /* Pods_MERPresentation_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A4F0DE29CA2E9F2FD7FE08 /* Pods_MERPresentation_Example.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		8CBE7B842088CDA400854DE4 /* MERSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBE7B832088CDA400854DE4 /* MERSecondViewController.m */; };
+		8CBE7B882088D50100854DE4 /* MERClickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBE7B872088D50100854DE4 /* MERClickView.m */; };
 		CCA194E3CDB942932EA5A16B /* Pods_MERPresentation_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37269AAEB0FF030D13DDA3FB /* Pods_MERPresentation_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +41,7 @@
 /* Begin PBXFileReference section */
 		37269AAEB0FF030D13DDA3FB /* Pods_MERPresentation_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERPresentation_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		406FF28CAA68B3A0AAA2CF44 /* Pods-MERPresentation_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERPresentation_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MERPresentation_Tests/Pods-MERPresentation_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		59E57A86FC13D0C2C1E00727 /* MERPresentation.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = MERPresentation.podspec; path = ../MERPresentation.podspec; sourceTree = "<group>"; };
+		59E57A86FC13D0C2C1E00727 /* MERPresentation.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MERPresentation.podspec; path = ../MERPresentation.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* MERPresentation_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MERPresentation_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,8 +63,12 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8B6A81785CB0AFDDD7F054D6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		B6918D8A50E03C7A70A17F10 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8B6A81785CB0AFDDD7F054D6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8CBE7B822088CDA400854DE4 /* MERSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERSecondViewController.h; sourceTree = "<group>"; };
+		8CBE7B832088CDA400854DE4 /* MERSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MERSecondViewController.m; sourceTree = "<group>"; };
+		8CBE7B862088D50100854DE4 /* MERClickView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MERClickView.h; sourceTree = "<group>"; };
+		8CBE7B872088D50100854DE4 /* MERClickView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MERClickView.m; sourceTree = "<group>"; };
+		B6918D8A50E03C7A70A17F10 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D7A4F0DE29CA2E9F2FD7FE08 /* Pods_MERPresentation_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MERPresentation_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB7A22DE52D087C59CE8153 /* Pods-MERPresentation_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERPresentation_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERPresentation_Tests/Pods-MERPresentation_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE8F3A87787845250F14DB97 /* Pods-MERPresentation_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MERPresentation_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MERPresentation_Example/Pods-MERPresentation_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -145,9 +151,13 @@
 			children = (
 				6003F59C195388D20070C39A /* MERAppDelegate.h */,
 				6003F59D195388D20070C39A /* MERAppDelegate.m */,
+				8CBE7B862088D50100854DE4 /* MERClickView.h */,
+				8CBE7B872088D50100854DE4 /* MERClickView.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* MERViewController.h */,
 				6003F5A6195388D20070C39A /* MERViewController.m */,
+				8CBE7B822088CDA400854DE4 /* MERSecondViewController.h */,
+				8CBE7B832088CDA400854DE4 /* MERSecondViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -403,9 +413,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CBE7B882088D50100854DE4 /* MERClickView.m in Sources */,
 				6003F59E195388D20070C39A /* MERAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* MERViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				8CBE7B842088CDA400854DE4 /* MERSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
