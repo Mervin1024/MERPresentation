@@ -8,7 +8,7 @@
 
 #import "MERSecondViewController.h"
 
-@interface MERSecondViewController ()
+@interface MERSecondViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @end
 
@@ -17,15 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor colorWithRed:86/255.0 green:214/255.0 blue:255/255.0 alpha:1];
+    _tableView.backgroundColor = [UIColor colorWithRed:255/255.0 green:227/255.0 blue:180/255.0 alpha:1];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
     [self.view addSubview:_tableView];
-    
-    UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [dismissButton setTitle:@"关闭" forState:UIControlStateNormal];
-    [dismissButton addTarget:self action:@selector(dismissButtonDidPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [dismissButton sizeToFit];
-    dismissButton.center = CGPointMake(50, 50);
-    [self.view addSubview:dismissButton];
     
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addConstraints:@[
@@ -64,7 +59,21 @@
                                 ]];
 }
 
-- (void)dismissButtonDidPressed:(id)sender {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([self class])];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([self class])];
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"测试 ：%@",@(indexPath.row)];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

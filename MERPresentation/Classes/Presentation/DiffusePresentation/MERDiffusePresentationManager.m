@@ -9,7 +9,7 @@
 #import "MERDiffusePresentationManager.h"
 #import "MERDiffusePresentationController.h"
 #import "MERDiffusePresentationAnimator.h"
-#import "MERDiffusePresentationInteractive.h"
+#import "MERPresentationInteractive.h"
 
 @interface MERDiffusePresentationManager () <MERDiffuseDelegate>
 @property (nonatomic, strong) UIView *animatingMaskView;
@@ -17,14 +17,14 @@
 
 @implementation MERDiffusePresentationManager {
     CGPoint _startingPoint;
-    MERDiffusePresentationInteractive *_interactive;
+    MERPresentationInteractive *_interactive;
 }
 
 - (instancetype)initWithStartingPoint:(CGPoint)startingPoint {
     self = [super init];
     if (self) {
         _startingPoint = startingPoint;
-        _interactive = [[MERDiffusePresentationInteractive alloc] init];
+        _interactive = [[MERPresentationInteractive alloc] init];
     }
     return self;
 }

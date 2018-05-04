@@ -64,7 +64,7 @@ static NSString *const MERReuseIdentifier = @"MERViewControllerReuseIdentifier";
     } else if (indexPath.row == MERPresentationAnimationTypeSlider) {
         cellTitle = @"侧边滑入";
     } else if (indexPath.row == MERPresentationAnimationTypeFade) {
-        cellTitle = @"淡入淡出";
+        cellTitle = @"侧边转场(支持侧滑返回)";
     } else if (indexPath.row == MERPresentationAnimationTypeDiffuse) {
         cellTitle = @"点扩散(支持侧滑返回)";
     }
@@ -78,7 +78,8 @@ static NSString *const MERReuseIdentifier = @"MERViewControllerReuseIdentifier";
     MERSecondViewController *controller = [[MERSecondViewController alloc] init];
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     // Action Sheet
     if (indexPath.row == MERPresentationAnimationTypeActionSheet) {
         controller.mer_viewSize = CGSizeMake(screenWidth / 6.0 * 5, screenHeight / 5.0 * 2);

@@ -10,4 +10,8 @@
 
 @interface MERPresentationInteractive : UIPercentDrivenInteractiveTransition
 
+@property (nonatomic, assign) BOOL isInteracting;
+
+- (void)setDismissGestureRecognizerToViewController:(UIViewController *)viewController;
+
 @end

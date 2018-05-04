@@ -9,8 +9,19 @@
 #import "MERGraduallyFadePresentationManager.h"
 #import "MERGraduallyFadePresentationController.h"
 #import "MERGraduallyFadePresentationAnimator.h"
+#import "MERPresentationInteractive.h"
 
-@implementation MERGraduallyFadePresentationManager
+@implementation MERGraduallyFadePresentationManager {
+    MERPresentationInteractive *_interactive;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _interactive = [[MERPresentationInteractive alloc] init];
+    }
+    return self;
+}
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
@@ -21,12 +32,16 @@
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    
+    [_interactive setDismissGestureRecognizerToViewController:presented];
     return [[MERGraduallyFadePresentationAnimator alloc] initWhenPresentation:YES];;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     return [[MERGraduallyFadePresentationAnimator alloc] initWhenPresentation:NO];;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return _interactive.isInteracting ? _interactive : nil;
 }
 
 
