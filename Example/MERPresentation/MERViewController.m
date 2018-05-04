@@ -83,9 +83,7 @@ static NSString *const MERReuseIdentifier = @"MERViewControllerReuseIdentifier";
     // Action Sheet
     if (indexPath.row == MERPresentationAnimationTypeActionSheet) {
         controller.mer_viewSize = CGSizeMake(screenWidth / 6.0 * 5, screenHeight / 5.0 * 2);
-        [self presentActionSheetViewController:controller hideWhenClickBlankArea:YES animated:YES completion:nil afterDismiss:^{
-            NSLog(@"页面收回");
-        }];
+        [self presentActionSheetViewController:controller animated:YES completion:nil];
         
     // 侧边滑入
     } else if (indexPath.row == MERPresentationAnimationTypeSlider) {
