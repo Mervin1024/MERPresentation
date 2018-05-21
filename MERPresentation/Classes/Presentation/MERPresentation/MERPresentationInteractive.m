@@ -62,10 +62,11 @@
         CGFloat progress = [recognizer translationInView:[UIApplication sharedApplication].keyWindow].x / ([UIApplication sharedApplication].keyWindow.bounds.size.width * 1.0);
         progress = MIN(1.0, MAX(0.0, progress));
         
-//        if (@available(iOS 11.0,*)) {
-//            self.completionSpeed = 1 - progress;
-//            [self finishInteractiveTransition];
-//        } else {
+        if (@available(iOS 11.0,*)) {
+            self.completionSpeed = 1 - progress;
+            [self finishInteractiveTransition];
+            NSLog(@"Pop完成");
+        } else {
             CGPoint velocity = [recognizer velocityInView:[UIApplication sharedApplication].keyWindow];
             if ((progress > 0.25 && velocity.x > 0) || progress > 0.5) {
                 NSLog(@"Pop完成");
@@ -76,7 +77,7 @@
                 [self updateInteractiveTransition:0.f];
                 [self cancelInteractiveTransition];
             }
-//        }
+        }
         _isInteracting = NO;
     }
 }

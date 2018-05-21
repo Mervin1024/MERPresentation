@@ -16,7 +16,6 @@
 @end
 
 @implementation MERDiffusePresentationManager {
-    CGPoint _startingPoint;
     MERPresentationInteractive *_interactive;
 }
 

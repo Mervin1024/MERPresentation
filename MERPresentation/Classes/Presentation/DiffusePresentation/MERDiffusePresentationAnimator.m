@@ -32,17 +32,18 @@
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    UIViewController *pushedVC = self.isPresentation ? toVC : fromVC;
+    NSString *key = self.isPresentation ? UITransitionContextToViewKey : UITransitionContextFromViewKey;
+    UIView *toView = [transitionContext viewForKey:key];
+
     if (self.isPresentation) {
-        [transitionContext.containerView addSubview:toVC.view];
+        [transitionContext.containerView addSubview:toView];
     }
     
+    toView.frame = transitionContext.containerView.bounds;
+    
     CGRect smallRect = CGRectMake(self.startingPoint.x, self.startingPoint.y, 1, 1);
-    CGFloat extremeX = MAX(self.startingPoint.x, CGRectGetWidth(pushedVC.view.bounds)-self.startingPoint.x);
-    CGFloat extremeY = MAX(self.startingPoint.y, CGRectGetHeight(pushedVC.view.bounds)-self.startingPoint.y);
+    CGFloat extremeX = MAX(self.startingPoint.x, CGRectGetWidth(toView.bounds)-self.startingPoint.x);
+    CGFloat extremeY = MAX(self.startingPoint.y, CGRectGetHeight(toView.bounds)-self.startingPoint.y);
     CGPoint extremePoint = CGPointMake(extremeX, extremeY);
     CGFloat radius = sqrtf(extremePoint.x * extremePoint.x + extremePoint.y * extremePoint.y);
     CGRect largeRect = CGRectInset(smallRect, -radius, -radius);
@@ -53,23 +54,23 @@
     
     if (self.isPresentation) {
         MERRipplesAnimatedView *animatedView = [[MERRipplesAnimatedView alloc] initWithFrame:initialRect];
-        pushedVC.view.maskView = animatedView;
+        toView.maskView = animatedView;
         if ([self.delegate respondsToSelector:@selector(setAnimatingMaskViewAfterPresented:)]) {
             [self.delegate setAnimatingMaskViewAfterPresented:animatedView];
         }
     } else {
         if ([self.delegate respondsToSelector:@selector(getAnimatingMaskViewBeforeDismiss)]) {
             UIView *maskView = [self.delegate getAnimatingMaskViewBeforeDismiss];
-            pushedVC.view.maskView = maskView;
+            toView.maskView = maskView;
         }
     }
     
     UIViewAnimationOptions options = self.isPresentation ? UIViewAnimationOptionCurveEaseInOut : UIViewAnimationOptionCurveEaseInOut;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:options animations:^{
-        pushedVC.view.maskView.frame = finalRect;
+        toView.maskView.frame = finalRect;
     } completion:^(BOOL finished) {
-        pushedVC.view.maskView = nil;
+        toView.maskView = nil;
         [transitionContext completeTransition:finished];
     }];
 

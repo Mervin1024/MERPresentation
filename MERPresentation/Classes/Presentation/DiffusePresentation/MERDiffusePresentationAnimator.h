@@ -6,7 +6,7 @@
 //  Copyright © 2018年 马遥. All rights reserved.
 //
 
-#import "MERPresentationAnimator.h"
+#import <UIKit/UIKit.h>
 
 @protocol MERDiffuseDelegate <NSObject>
 
@@ -15,7 +15,7 @@
 
 @end
 
-@interface MERDiffusePresentationAnimator : MERPresentationAnimator
+@interface MERDiffusePresentationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, weak) id<MERDiffuseDelegate> delegate;
 

@@ -6,8 +6,9 @@
 //  Copyright © 2017年 boxfish. All rights reserved.
 //
 
-#import "MERPresentationManager.h"
+#import <UIKit/UIKit.h>
+#import "MERPresentationHeader.h"
 
-@interface MERGraduallyFadePresentationManager : MERPresentationManager
+@interface MERGraduallyFadePresentationManager : NSObject <UIViewControllerTransitioningDelegate>
 @property (nonatomic, copy) PresentationAfterDismiss dismissBlock;
 @end

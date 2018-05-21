@@ -75,7 +75,10 @@ static NSString *const MERReuseIdentifier = @"MERViewControllerReuseIdentifier";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MERSecondViewController *controller = [[MERSecondViewController alloc] init];
+    static MERSecondViewController *controller = nil;
+    if (controller == nil) {
+        controller = [[MERSecondViewController alloc] init];
+    }
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -6,9 +6,10 @@
 //  Copyright © 2017年 boxfish. All rights reserved.
 //
 
-#import "MERPresentationAnimator.h"
+#import <UIKit/UIKit.h>
+#import "MERPresentationHeader.h"
 
-@interface MERSlidePresentationAnimator : MERPresentationAnimator
+@interface MERSlidePresentationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 - (instancetype)initWithDirection:(MERSlidePresentationDirection)direction isPresentation:(BOOL)isPresentation;
 

@@ -35,12 +35,13 @@
         [transitionContext.containerView addSubview:toView];
     }
     
+    toView.frame = transitionContext.containerView.bounds;
+
     CGPoint outPosition = CGPointMake(toView.bounds.size.width, toView.bounds.size.height * 0.5);
     CGPoint inPosition = CGPointMake(0, toView.bounds.size.height * 0.5);
     CGPoint beginPosition = self.isPresentation ? outPosition : inPosition;
     CGPoint endPosition = self.isPresentation ? inPosition : outPosition;
     
-    toView.frame = transitionContext.containerView.bounds;
     toView.layer.anchorPoint = CGPointMake(0, 0.5);
     toView.layer.position = beginPosition;
 
@@ -66,6 +67,9 @@
         toView.layer.position = endPosition;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        toView.layer.transform = CATransform3DIdentity;
+        toView.layer.position = CGPointZero;
+        toView.layer.anchorPoint = CGPointZero;
     }];
     
 }

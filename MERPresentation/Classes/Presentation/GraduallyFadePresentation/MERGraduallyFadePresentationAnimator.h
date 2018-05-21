@@ -6,9 +6,9 @@
 //  Copyright © 2017年 boxfish. All rights reserved.
 //
 
-#import "MERPresentationAnimator.h"
+#import <UIKit/UIKit.h>
 
-@interface MERGraduallyFadePresentationAnimator : MERPresentationAnimator
+@interface MERGraduallyFadePresentationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 - (instancetype)initWhenPresentation:(BOOL)isPresentation;
 

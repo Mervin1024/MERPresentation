@@ -15,14 +15,21 @@
 static char MER_PresentationManagerKey;
 static char MER_PresentationViewSizeKey;
 
+#define MER_isKindOfClass(obj, className)   mer_isKindOfClass(obj, [className class])
+
+BOOL mer_isKindOfClass(id obj, Class class) {
+    Class obj_class = [obj class];
+    return [NSStringFromClass(obj_class) isEqualToString:NSStringFromClass(class)];
+}
+
 @implementation UIViewController (MERPresentation)
 
-- (void)setMer_PresentationManager:(MERPresentationManager *)presentationManager {
+- (void)setMer_PresentationManager:(id<UIViewControllerTransitioningDelegate>)presentationManager {
     objc_setAssociatedObject(self, &MER_PresentationManagerKey, presentationManager, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (MERPresentationManager *)mer_presentationManager {
-    MERPresentationManager *manager = objc_getAssociatedObject(self, &MER_PresentationManagerKey);
+- (id<UIViewControllerTransitioningDelegate>)mer_presentationManager {
+    id<UIViewControllerTransitioningDelegate> manager = objc_getAssociatedObject(self, &MER_PresentationManagerKey);
     return manager;
 }
 
@@ -68,11 +75,17 @@ static char MER_PresentationViewSizeKey;
                                 animated:(BOOL)flag
                               completion:(void (^)(void))completion
                             afterDismiss:(PresentationAfterDismiss)afterDismiss {
-    MERSheetPresentationManager *sheetPresentationManager = [[MERSheetPresentationManager alloc] init];
+    id<UIViewControllerTransitioningDelegate> manager = [viewControllerToPresent mer_presentationManager];
+    MERSheetPresentationManager *sheetPresentationManager;
+    if (manager != nil && MER_isKindOfClass(manager, MERSheetPresentationManager)) {
+        sheetPresentationManager = (MERSheetPresentationManager *)manager;
+    } else {
+        sheetPresentationManager = [[MERSheetPresentationManager alloc] init];
+        [viewControllerToPresent setMer_PresentationManager:sheetPresentationManager];
+    }
     sheetPresentationManager.effectiveViewSize = viewControllerToPresent.mer_viewSize;
     sheetPresentationManager.dismissBlock = afterDismiss;
     sheetPresentationManager.hideWhenClickBlankArea = hideWhenClickBlankArea;
-    [viewControllerToPresent setMer_PresentationManager:sheetPresentationManager];
 
     viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
     viewControllerToPresent.transitioningDelegate = sheetPresentationManager;
@@ -87,10 +100,17 @@ static char MER_PresentationViewSizeKey;
                           direction:(MERSlidePresentationDirection)direction
                            animated:(BOOL)flag
                          completion:(void (^)(void))completion {
-    MERSlidePresentationManager *sliderPresentationManager = [[MERSlidePresentationManager alloc] init];
+    id<UIViewControllerTransitioningDelegate> manager = [viewControllerToPresent mer_presentationManager];
+    MERSlidePresentationManager *sliderPresentationManager;
+    if (manager != nil && MER_isKindOfClass(manager, MERSlidePresentationManager)) {
+        sliderPresentationManager = (MERSlidePresentationManager *)manager;
+    } else {
+        sliderPresentationManager = [[MERSlidePresentationManager alloc] init];
+        [viewControllerToPresent setMer_PresentationManager:sliderPresentationManager];
+    }
+
     sliderPresentationManager.viewSize = viewControllerToPresent.mer_viewSize;
     sliderPresentationManager.direction = direction;
-    [viewControllerToPresent setMer_PresentationManager:sliderPresentationManager];
     
     viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
     viewControllerToPresent.transitioningDelegate = sliderPresentationManager;
@@ -104,9 +124,14 @@ static char MER_PresentationViewSizeKey;
 - (void)presentFadePatternViewController:(UIViewController *)viewControllerToPresent
                                 animated:(BOOL)flag
                               completion:(void (^)(void))completion {
-    
-    MERGraduallyFadePresentationManager *graduallyFadePresentationManager = [[MERGraduallyFadePresentationManager alloc] init];
-    [viewControllerToPresent setMer_PresentationManager:graduallyFadePresentationManager];
+    id<UIViewControllerTransitioningDelegate> manager = [viewControllerToPresent mer_presentationManager];
+    MERGraduallyFadePresentationManager *graduallyFadePresentationManager;
+    if (manager != nil && MER_isKindOfClass(manager, MERGraduallyFadePresentationManager)) {
+        graduallyFadePresentationManager = (MERGraduallyFadePresentationManager *)manager;
+    } else {
+        graduallyFadePresentationManager = [[MERGraduallyFadePresentationManager alloc] init];
+        [viewControllerToPresent setMer_PresentationManager:graduallyFadePresentationManager];
+    }
     
     viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
     viewControllerToPresent.transitioningDelegate = graduallyFadePresentationManager;
@@ -120,8 +145,15 @@ static char MER_PresentationViewSizeKey;
                           startPoint:(CGPoint)startPoint
                             animated:(BOOL)flag
                           completion:(void (^)(void))completion {
-    MERDiffusePresentationManager *diffusePresentationManager = [[MERDiffusePresentationManager alloc] initWithStartingPoint:startPoint];
-    [viewControllerToPresent setMer_PresentationManager:diffusePresentationManager];
+    id<UIViewControllerTransitioningDelegate> manager = [viewControllerToPresent mer_presentationManager];
+    MERDiffusePresentationManager *diffusePresentationManager;
+    if (manager != nil && MER_isKindOfClass(manager, MERDiffusePresentationManager)) {
+        diffusePresentationManager = (MERDiffusePresentationManager *)manager;
+        diffusePresentationManager.startingPoint = startPoint;
+    } else {
+        diffusePresentationManager = [[MERDiffusePresentationManager alloc] initWithStartingPoint:startPoint];
+        [viewControllerToPresent setMer_PresentationManager:diffusePresentationManager];
+    }
     
     viewControllerToPresent.modalPresentationStyle = UIModalPresentationCustom;
     viewControllerToPresent.transitioningDelegate = diffusePresentationManager;
